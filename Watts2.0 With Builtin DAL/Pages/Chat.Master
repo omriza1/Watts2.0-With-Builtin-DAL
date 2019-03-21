@@ -1,0 +1,64 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Chat.master.cs" Inherits="Watts2._0_With_Builtin_DAL.Pages.Chat" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Chat</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="style" runat="server"></asp:ContentPlaceHolder>
+    <script src="../Scripts/jquery-3.3.1.js"></script>
+    <style>
+       .css1{
+           position:absolute;
+           top:40px;
+           left:1680px;           
+           width:250px;
+           height:1000px;
+       }
+       .css2{
+           top:200px;
+           left:20px;
+           position:absolute;
+           height:775px;
+           overflow-y:auto;
+       }
+       .topBar{
+           top:100px;
+       }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager>
+            <asp:ContentPlaceHolder ID="Menu" runat="server"></asp:ContentPlaceHolder>
+            <div class="css1">
+                <asp:ContentPlaceHolder ID="searchLabel" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            
+            <asp:ContentPlaceHolder ID="CreateEvent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+        <div class="panel">
+            <div class="topBar">
+                <asp:Image runat="server" ID="profilepic"/>
+                <asp:Label runat="server" ID="name"></asp:Label>
+                <asp:Label runat="server" ID="hours"></asp:Label>
+                <asp:Label runat="server" ID="dotes" Text=":"></asp:Label>
+                <asp:Label runat="server" ID="minutes"></asp:Label>
+                <asp:Label runat="server" ID="date"></asp:Label>
+            </div>
+            <div class="css2">
+                 <asp:ContentPlaceHolder ID="friends" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <div class="ChatScreen" style="overflow-y:auto;position:absolute;top:200px;left:400px;">
+                <asp:ContentPlaceHolder ID="chatScreen" runat="server"></asp:ContentPlaceHolder>
+            </div>
+            <div class="MessageBar">
+            <asp:ContentPlaceHolder ID="messageBar" runat="server"></asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+    <asp:ContentPlaceHolder ID="scripts" runat="server"></asp:ContentPlaceHolder>
+</body>
+</html>

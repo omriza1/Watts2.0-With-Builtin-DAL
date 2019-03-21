@@ -1,0 +1,20 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Events.master.cs" Inherits="Watts2._0_With_Builtin_DAL.Pages.Events" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="Style" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="scriptmanager1" runat="server"></asp:ScriptManager>
+        <div>
+            <asp:ContentPlaceHolder ID="Menu" runat="server"></asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="EventList" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
