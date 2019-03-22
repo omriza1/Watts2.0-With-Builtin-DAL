@@ -115,12 +115,12 @@
     <style type="text/css">
         .ChatScreen {
             width: 1000px;
-    height: 800px;
-    flex-flow: column;
-    border-top-left-radius: 17px;
-    border-top-right-radius: 17px;
-    transition: 0.1s ease-out;
-    background-color: #f0d9ff;
+            height: 600px;
+            flex-flow: column;
+            border-top-left-radius: 17px;
+            border-top-right-radius: 17px;
+            transition: 0.1s ease-out;
+            background-color: #f0d9ff;
         }
 
             .ChatScreen .container {
@@ -228,15 +228,15 @@
             height:95px;
         }
         .MainContainer{
-                background-color: #f0d9ff;
-    border-bottom-left-radius: 17px;
-    border-bottom-right-radius: 17px;
-    z-index: 8;
-    position: absolute;
-    left: 400px;
-    top: 1000px;
-    width: 1000px;
-    height: 94px;
+            background-color: #f0d9ff;
+            border-bottom-left-radius: 17px;
+            border-bottom-right-radius: 17px;
+            z-index: 8;
+            position: absolute;
+            left: 400px;
+            top: 800px;
+            width: 1000px;
+            height: 94px;
         }
         body {
             padding: 0;
@@ -643,10 +643,14 @@
     </div>
 </asp:Content>
 
-<asp:Content ID="Content6" runat="server" ContentPlaceHolderID="friends">
+<asp:Content ID="Content10" runat="server" ContentPlaceHolderID="searchbar">
     <div class="headerTblFriend">
-         <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl"></asp:TextBox>
+         <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
     </div>
+</asp:Content>
+
+<asp:Content ID="Content6" runat="server" ContentPlaceHolderID="friends">
+    
     <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <asp:Timer Interval="1000" Enabled="true" OnTick="updateTable" runat="server" ID="Timer1"></asp:Timer>

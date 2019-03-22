@@ -130,6 +130,15 @@ namespace Watts2._0_With_Builtin_DAL.Pages {
         protected global::System.Web.UI.WebControls.Label date;
         
         /// <summary>
+        /// searchbar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder searchbar;
+        
+        /// <summary>
         /// friends control.
         /// </summary>
         /// <remarks>

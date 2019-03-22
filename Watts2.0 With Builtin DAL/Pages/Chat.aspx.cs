@@ -20,7 +20,8 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected static bool Button1WasPressed = false;
         protected static bool Button2WasPressed = false;
         protected string username { get; set; }
-        string password { get; set; }
+        protected string password { get; set; }
+        protected static string userSearch;
         protected void Page_Load(object sender, EventArgs e)
         {
             username = Request.QueryString["username"];
@@ -126,22 +127,36 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             DataBind();
         }
 
-        protected void fillTableFriends()
+        protected void fillTableFriends(string userSearch)
         {
-            command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user), conn);
-            conn.Open();
-            MySqlDataAdapter adap = new MySqlDataAdapter(command);
-            DataTable dt1 = new DataTable();
-            adap.Fill(dt1);
-            friendsList.DataSource = dt1;
-            DataBind();
-            conn.Close();
+            if (userSearch == null)
+            {
+                command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user), conn);
+                conn.Open();
+                MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                DataTable dt1 = new DataTable();
+                adap.Fill(dt1);
+                friendsList.DataSource = dt1;
+                DataBind();
+                conn.Close();
+            }
+            else
+            {
+                command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user) + " and user_name like '" + userSearch + "%'", conn);
+                conn.Open();
+                MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                DataTable dt1 = new DataTable();
+                adap.Fill(dt1);
+                friendsList.DataSource = dt1;
+                DataBind();
+                conn.Close();
+            }
 
         }
 
         protected void updateTable(object sender, EventArgs e)
         {
-            fillTableFriends();
+            fillTableFriends(userSearch);
         }
 
         protected void addfriend(object sender, EventArgs e)
@@ -211,11 +226,6 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             Session["EventDate"] = calendar.SelectedDate.ToShortDateString();
         }
 
-        protected void TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void friendsList_ItemCommand(object source, DataListCommandEventArgs e)
         {
             friendsList.SelectedIndex = e.Item.ItemIndex;
@@ -229,6 +239,11 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             Button2WasPressed = false;
             userChatList.DataSource = null;
 
+        }
+
+        protected void searchF_TextChanged(object sender, EventArgs e)
+        {
+            userSearch = searchF.Text;
         }
     }
 }

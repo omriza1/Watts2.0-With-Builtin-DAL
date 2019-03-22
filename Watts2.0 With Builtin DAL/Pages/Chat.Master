@@ -9,6 +9,28 @@
     <asp:ContentPlaceHolder ID="style" runat="server"></asp:ContentPlaceHolder>
     <script src="../Scripts/jquery-3.3.1.js"></script>
     <style>
+        body{
+            overflow:hidden;
+        }
+        ::-webkit-scrollbar {
+          width: 0px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+          border-radius: 17px;
+        }
+ 
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #f0d9ff; 
+          border-radius: 17px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #e869e9; 
+        }
        .css1{
            position:absolute;
            top:40px;
@@ -17,11 +39,14 @@
            height:1000px;
        }
        .css2{
-           top:200px;
+           top:295px;
            left:20px;
            position:absolute;
-           height:775px;
+           height:500px;
            overflow-y:auto;
+           border-bottom-left-radius:17px;
+           border-bottom-right-radius:17px;
+           border:0px solid;
        }
        .topBar{
            top:100px;
@@ -47,6 +72,9 @@
                 <asp:Label runat="server" ID="dotes" Text=":"></asp:Label>
                 <asp:Label runat="server" ID="minutes"></asp:Label>
                 <asp:Label runat="server" ID="date"></asp:Label>
+            </div>
+            <div class="searchFriend" style="top:200px; left:20px; position:absolute;">
+            <asp:ContentPlaceHolder ID="searchbar" runat="server"></asp:ContentPlaceHolder>
             </div>
             <div class="css2">
                  <asp:ContentPlaceHolder ID="friends" runat="server"></asp:ContentPlaceHolder>
