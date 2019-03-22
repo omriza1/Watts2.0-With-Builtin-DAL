@@ -139,6 +139,15 @@ namespace Watts2._0_With_Builtin_DAL.Pages {
         protected global::System.Web.UI.WebControls.Button ChatGroupB;
         
         /// <summary>
+        /// displaybutton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button displaybutton;
+        
+        /// <summary>
         /// searchF control.
         /// </summary>
         /// <remarks>

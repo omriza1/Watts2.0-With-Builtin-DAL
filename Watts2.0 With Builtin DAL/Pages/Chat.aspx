@@ -214,7 +214,7 @@
                 -moz-border-radius: 18px;
                 border-radius: 18px;
                 position:relative;
-                top:30px;
+                top:50px;
                 width:345px;
                 height:37px;
         }
@@ -238,6 +238,39 @@
             width: 1000px;
             height: 94px;
         }
+        .onoffswitch {
+    position: absolute; width: 60px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    z-index:8;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 20px; padding: 0; line-height: 20px;
+    border: 2px solid #E3E3E3; border-radius: 20px;
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease-in;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 20px; margin: 0px;
+    background: #f0d9ff;
+    position: absolute; top: 0; bottom: 0;
+    right: 38px;
+    border: 2px solid #E3E3E3; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: #85FFEA;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: #85FFEA;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+}
         body {
             padding: 0;
             margin: 0;
@@ -641,16 +674,26 @@
         <asp:TextBox ID="ChatGroupT" runat="server" Style="position: absolute; top: 700px; left: 1700px;"></asp:TextBox>
         <asp:Button ID="ChatGroupB" runat="server" Style="position: absolute; top: 750px; left: 1600px;" OnClick="chooseGroup" Text="createGroup" />
     </div>
+
+
+
+    
 </asp:Content>
 
 <asp:Content ID="Content10" runat="server" ContentPlaceHolderID="searchbar">
+    <div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch" ></label>
+</div>
     <div class="headerTblFriend">
+        <div class="switch">
+        <asp:Button ID="displaybutton" runat="server" OnClick="displaybutton_Click" CssClass="ChatText" />
+        </div>
          <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content6" runat="server" ContentPlaceHolderID="friends">
-    
     <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <asp:Timer Interval="1000" Enabled="true" OnTick="updateTable" runat="server" ID="Timer1"></asp:Timer>
@@ -695,6 +738,13 @@
         function getFriend(username) {
             EndUser = username;
             alert(EndUser);
+            $("#hidden").text(EndUser);
+            alert($("#hidden").text());
+        }
+        function setDisplay() {
+            $(".onoffswitch").click(function () {
+
+            })
         }
         $(document).ready(function(){
             $(".Home").click(function () {

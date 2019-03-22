@@ -22,6 +22,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected string username { get; set; }
         protected string password { get; set; }
         protected static string userSearch;
+        protected static int displayCounter = 1;
         protected void Page_Load(object sender, EventArgs e)
         {
             username = Request.QueryString["username"];
@@ -129,27 +130,55 @@ namespace Watts2._0_With_Builtin_DAL.Pages
 
         protected void fillTableFriends(string userSearch)
         {
-            if (userSearch == null)
+            if (displayCounter == 1)
             {
-                command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user), conn);
-                conn.Open();
-                MySqlDataAdapter adap = new MySqlDataAdapter(command);
-                DataTable dt1 = new DataTable();
-                adap.Fill(dt1);
-                friendsList.DataSource = dt1;
-                DataBind();
-                conn.Close();
+                if (userSearch == null)
+                {
+                    command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user), conn);
+                    conn.Open();
+                    MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                    DataTable dt1 = new DataTable();
+                    adap.Fill(dt1);
+                    friendsList.DataSource = dt1;
+                    DataBind();
+                    conn.Close();
+                }
+                else
+                {
+                    command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user) + " and user_name like '" + userSearch + "%'", conn);
+                    conn.Open();
+                    MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                    DataTable dt1 = new DataTable();
+                    adap.Fill(dt1);
+                    friendsList.DataSource = dt1;
+                    DataBind();
+                    conn.Close();
+                }
             }
-            else
+            else if(displayCounter == 0)
             {
-                command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user) + " and user_name like '" + userSearch + "%'", conn);
-                conn.Open();
-                MySqlDataAdapter adap = new MySqlDataAdapter(command);
-                DataTable dt1 = new DataTable();
-                adap.Fill(dt1);
-                friendsList.DataSource = dt1;
-                DataBind();
-                conn.Close();
+                if (userSearch == null)
+                {
+                    command = new MySqlCommand("select group_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user) , conn);
+                    conn.Open();
+                    MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                    DataTable dt1 = new DataTable();
+                    adap.Fill(dt1);
+                    friendsList.DataSource = dt1;
+                    DataBind();
+                    conn.Close();
+                }
+                else
+                {
+                    command = new MySqlCommand("select group_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user) + " and group_name like '" + userSearch + "%'", conn);
+                    conn.Open();
+                    MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                    DataTable dt1 = new DataTable();
+                    adap.Fill(dt1);
+                    friendsList.DataSource = dt1;
+                    DataBind();
+                    conn.Close();
+                }
             }
 
         }
@@ -244,6 +273,18 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected void searchF_TextChanged(object sender, EventArgs e)
         {
             userSearch = searchF.Text;
+        }
+
+        protected void displaybutton_Click(object sender, EventArgs e)
+        {
+            if (displayCounter == 1)
+            {
+                displayCounter--;
+            }
+            else
+            {
+                displayCounter++;
+            }
         }
     }
 }

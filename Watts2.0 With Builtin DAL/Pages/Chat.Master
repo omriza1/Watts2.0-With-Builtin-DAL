@@ -42,7 +42,7 @@
            top:295px;
            left:20px;
            position:absolute;
-           height:500px;
+           height:599px;
            overflow-y:auto;
            border-bottom-left-radius:17px;
            border-bottom-right-radius:17px;
