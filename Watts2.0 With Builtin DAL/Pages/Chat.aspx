@@ -681,15 +681,14 @@
 </asp:Content>
 
 <asp:Content ID="Content10" runat="server" ContentPlaceHolderID="searchbar">
-    <div class="onoffswitch">
+    <%--<div class="onoffswitch">
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch" ></label>
-</div>
+    </div>--%>
     <div class="headerTblFriend">
-        <div class="switch">
         <asp:Button ID="displaybutton" runat="server" OnClick="displaybutton_Click" CssClass="ChatText" />
-        </div>
-         <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
+       
+        <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
     </div>
 </asp:Content>
 

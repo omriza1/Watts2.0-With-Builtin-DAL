@@ -18,6 +18,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected MySqlCommand command;
         protected string username { get; set; }
         protected string password { get; set; }
+        protected static string userSearch;
         protected void Page_Load(object sender, EventArgs e)
         {
             username = Request.QueryString["username"];
@@ -35,14 +36,28 @@ namespace Watts2._0_With_Builtin_DAL.Pages
 
         protected void fillTableFriends()
         {
-            command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user), conn);
-            conn.Open();
-            MySqlDataAdapter adap = new MySqlDataAdapter(command);
-            DataTable dt1 = new DataTable();
-            adap.Fill(dt1);
-            friendsList.DataSource = dt1;
-            DataBind();
-            conn.Close();
+                if (userSearch == null)
+                {
+                    command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user), conn);
+                    conn.Open();
+                    MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                    DataTable dt1 = new DataTable();
+                    adap.Fill(dt1);
+                    friendsList.DataSource = dt1;
+                    DataBind();
+                    conn.Close();
+                }
+                else
+                {
+                    command = new MySqlCommand("select user_name from watts_users join friends where userIDB = userID and userIDA =" + DAL.UserMethods.getIDOfUser(user) + " and user_name like '" + userSearch + "%'", conn);
+                    conn.Open();
+                    MySqlDataAdapter adap = new MySqlDataAdapter(command);
+                    DataTable dt1 = new DataTable();
+                    adap.Fill(dt1);
+                    friendsList.DataSource = dt1;
+                    DataBind();
+                    conn.Close();
+                }
 
         }
 
@@ -81,6 +96,11 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected void updateGroupTable(object sender, EventArgs e)
         {
             GroupList();
+        }
+        
+        protected void searchF_TextChanged(object sender, EventArgs e)
+        {
+            userSearch = searchF.Text;
         }
     }
 }

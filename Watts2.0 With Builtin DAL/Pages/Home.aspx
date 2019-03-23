@@ -115,6 +115,35 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="style" runat="server">
     <style type="text/css">
+        .headerFriendTbl{
+            -webkit-border-radius: 18px;
+                -moz-border-radius: 18px;
+                border-radius: 18px;
+                position:relative;
+                top:50px;
+                width:345px;
+                height:37px;
+        }
+        .headerTblFriend{
+            border-top-left-radius:18px;
+            border-top-right-radius:18px;
+            z-index:7;
+            position:relative;
+            background-color:#c873ff;
+            width:363px;
+            height:95px;
+        }
+        .friendClass {
+            border: 2px solid #dedede;
+            background-color: #E1B3FF;
+            border-radius: 18.3px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 345px;   
+            height:84px;
+            margin-left: 10px;
+            border-color: #E1B3FF;
+        }
         .headerTemp {
             font-size: 50px;
             margin-left: 400px;
@@ -150,7 +179,7 @@
             }
 
         .profile {
-            top: 100px;
+            top: 200px;
             left: 400px;
             position: absolute;
             box-shadow: 0 0 5px rgb(255, 255, 255);
@@ -186,22 +215,11 @@
                     width: 200px;
                 }
 
-        .friendClass {
-            border: 2px solid #dedede;
-            background-color: #E1B3FF;
-            border-radius: 18.3px;
-            padding: 10px;
-            margin: 10px 0;
-            width: 345px;
-            height: 84px;
-            margin-left: 10px;
-            border-color: #E1B3FF;
-        }
-
         .tbl {
             width: 10%;
             color: white;
             z-index: 3;
+            background-color:#f0d9ff;
         }
 
         body {
@@ -560,18 +578,26 @@
     </style>
 </asp:Content>
 
+<asp:Content ID="Content8" runat="server" ContentPlaceHolderID="searchbar">
+    <%--<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+    <label class="onoffswitch-label" for="myonoffswitch" ></label>
+    </div>--%>
+    <div class="headerTblFriend">
+       
+        <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
+    </div>
+</asp:Content>
+
 <asp:Content ID="Content4" ContentPlaceHolderID="friends" runat="server">
-    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
     <asp:UpdatePanel ID="UpdatePanel1" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
             <asp:Timer Interval="1000" Enabled="true" OnTick="updateTable" runat="server" ID="Timer1"></asp:Timer>
             <asp:DataList ID="friendsList" RepeatDirection="Vertical" runat="server"
-                Style="position: absolute; top: 200px; left: 200px; width: 363px; height: 774px;" CssClass="tbl">
-                <HeaderTemplate>Friends:</HeaderTemplate>
+                Style="position: relative; width:363px; border-bottom-left-radius:10px; border-bottom-right-radius:10px;" CssClass="tbl">
                 <ItemTemplate>
-                    <div class="friendClass">
-                        friend:<asp:Label ID="friendID" runat="server"
-                            Text='<%# Eval("user_name") %>' />
+                    <div class="friendClass" onclick="getFriend('<%# Eval("user_name")%>')">
+                        <asp:Label ID="friendID" runat="server" CssClass="derivativeFriendClass" Text='<%# Eval("user_name")%>'></asp:Label>
                     </div>
                 </ItemTemplate>
             </asp:DataList>
@@ -581,6 +607,7 @@
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
+
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="searchLabel">
     <div class="searchClass">
