@@ -641,7 +641,7 @@
                         <ItemTemplate>
                             <div class="box">
                                 <div class="topBox">
-                                    <asp:Label ID="label2" runat="server" Text='<%# Eval("group_name") %>'></asp:Label>
+                                    <asp:Label ID="label2" runat="server" Text='<%# Eval("user_name") %>'></asp:Label>
                                 </div>
                                 <div class="bottomBox">
                                     <asp:Label ID="label3" runat="server" Text="Are you an admin?:"></asp:Label>

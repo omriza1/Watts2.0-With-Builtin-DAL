@@ -189,7 +189,17 @@
             margin-left: 10px;
             border-color: #E1B3FF;
         }
-
+        .friendClass2 {
+            border: 2px solid #dedede;
+            background-color: #E1B3FF;
+            border-radius: 18.3px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 345px;   
+            height:84px;
+            margin-left: 10px;
+            border-color: #E1B3FF;
+        }
         .tbl {
             width: 200px;
             color: white;
@@ -659,12 +669,16 @@
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="searchLabel">
-    <div class="searchClass">
-        <asp:Label ID="Label1" runat="server" style="position:relative;" Text="Add friend:"></asp:Label>
-        <asp:TextBox ID="searchT" runat="server" style="position:relative;" ></asp:TextBox>
-        <asp:Button ID="searchB" runat="server" OnClick="addfriend" Style="position: relative;" Text="Add" />
-        
-
+        <div class="MainTwoContainer" style=" position:absolute; width:250px; left:-150px;">
+            <div class="headerTblFriend" style="left:-60px;">
+                <asp:Label ID="Label1" runat="server" style="font-size:xx-large; position:relative; left:110px; top:25px; " Text="Add friend"></asp:Label>
+            </div>
+             <div class="friendClass2" style="width:363px; position:relative; left:-70px; top:-10px; border-top-left-radius:0px; border-top-right-radius:0px;">
+                <asp:TextBox ID="searchT" runat="server" style="position:relative; width:280px; height:70%; top:-1px; border:0px solid;" CssClass="headerFriendTbl" ></asp:TextBox>
+                <asp:Button ID="searchB" runat="server" OnClick="addfriend" Style="position: relative; height:50px; width:50px; border: 0px solid;" CssClass="ChatText" Text="Add" />
+            </div>
+        </div>
+    <div class="searchClass" style="position:absolute; top:150px;">
         <asp:Label ID="groupChatL" runat="server" Style="position: relative; top:80px;" Text="Group name"></asp:Label>
         <asp:TextBox ID="groupChatT" runat="server" Style="position: relative; top:80px;" />
         <asp:Button ID="groupChatB" runat="server" Style="position: relative; top:80px;" Text="Create group" OnClick="createGroup" />
@@ -685,9 +699,11 @@
     <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
     <label class="onoffswitch-label" for="myonoffswitch" ></label>
     </div>--%>
+    <div class="HiddenClass">
+        <asp:HiddenField ID="hidden" runat="server"/>
+    </div>
     <div class="headerTblFriend">
         <asp:Button ID="displaybutton" runat="server" OnClick="displaybutton_Click" CssClass="ChatText" />
-       
         <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
     </div>
 </asp:Content>
@@ -701,6 +717,8 @@
                 <ItemTemplate>
                     <div class="friendClass" onclick="getFriend('<%# Eval("user_name")%>')">
                         <asp:Label ID="friendID" runat="server" CssClass="derivativeFriendClass" Text='<%# Eval("user_name")%>'></asp:Label>
+                        
+                        <asp:Button ID="ChatButton" runat="server" style="left:90px; width:250px; height:50px; font-size:x-large; background-color:transparent; border:1px solid; border-color:white; " CssClass="ChatText" Text="Chat" OnClick="ChooseSecondUser" />
                     </div>
                 </ItemTemplate>
             </asp:DataList>
@@ -737,8 +755,11 @@
         function getFriend(username) {
             EndUser = username;
             alert(EndUser);
-            $("#hidden").text(EndUser);
-            alert($("#hidden").text());
+            
+            //alert($(".HiddenClass").val());
+            //$('#hidden').val(EndUser);
+            //alert($('#hidden').val());
+            //$("#ChatButton").click();
         }
         function setDisplay() {
             $(".onoffswitch").click(function () {

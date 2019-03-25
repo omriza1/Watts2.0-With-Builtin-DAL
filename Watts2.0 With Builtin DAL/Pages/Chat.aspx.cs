@@ -33,10 +33,9 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["DATABASE"].ConnectionString);
         }
 
-        /*protected void ChooseSecondUser(object sender, EventArgs e)
+        protected void ChooseSecondUser(object sender, EventArgs e)
         {
-            friendsList.SelectedIndex = e.Item.ItemIndex;
-            Session["reciver"] = ((Label)friendsList.SelectedItem.FindControl("friendID")).Text;
+            Session["reciver"] = hidden.Value;
             Indicator.Text = "Chatting with user:" + Session["reciver"].ToString();
             if (Session["reciver"].ToString() != "" && Timer2.Enabled == false)
             {
@@ -45,7 +44,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             Button1WasPressed = true;
             Button2WasPressed = false;
             userChatList.DataSource = null;
-        }*/
+        }
 
         protected void SendMessageUser(object sender, EventArgs e)
         {
@@ -69,7 +68,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         {
             DataTable dt1 = new DataTable();
             DataTable dt3 = new DataTable();
-            if (Button1WasPressed)
+            if (Button1WasPressed && Session["receiver"].ToString() != null || Button1WasPressed && Session["receiver"].ToString() != "")
             {
                 dt1 = DAL.MessageMethods.getPrivateMessages(DAL.UserMethods.getIDOfUser(user), DAL.UserMethods.getIDOfUser(Session["receiver"].ToString()));
 
@@ -98,7 +97,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
                 }
 
             }
-            else if (Button2WasPressed)
+            else if (Button2WasPressed && Session["receiver"].ToString() != null || Button2WasPressed && Session["receiver"].ToString() != "")
             {
                 dt1 = DAL.GroupMethods.getMessages(DAL.GroupMethods.getIDOfGroup(ChatGroupT.Text));
 
@@ -159,7 +158,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             {
                 if (userSearch == null)
                 {
-                    command = new MySqlCommand("select group_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user) , conn);
+                    command = new MySqlCommand("select user_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user) , conn);
                     conn.Open();
                     MySqlDataAdapter adap = new MySqlDataAdapter(command);
                     DataTable dt1 = new DataTable();
@@ -170,7 +169,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
                 }
                 else
                 {
-                    command = new MySqlCommand("select group_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user) + " and group_name like '" + userSearch + "%'", conn);
+                    command = new MySqlCommand("select user_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user) + " and user_name like '" + userSearch + "%'", conn);
                     conn.Open();
                     MySqlDataAdapter adap = new MySqlDataAdapter(command);
                     DataTable dt1 = new DataTable();

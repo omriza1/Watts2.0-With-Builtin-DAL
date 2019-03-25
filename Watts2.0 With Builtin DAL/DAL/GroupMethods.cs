@@ -14,12 +14,12 @@ namespace Watts2._0_With_Builtin_DAL.DAL
         //creates a new group with an initial user as the admin
         public static void CreateGroup(string groupName, int userID)
         {
-            string com = "insert into watts_groups (group_name,UserID,IsAdmin) values('" + groupName + "'," + userID + "," + true + ")";
+            string com = "insert into watts_groups (user_name,UserID,IsAdmin) values('" + groupName + "'," + userID + "," + true + ")";
             dal.Execute(com);
         }
         public static void addUser(string groupName, int userID)
         {
-            string com = "insert into watts_groups (group_name,UserID,IsAdmin) values('" + groupName + "'," + userID + "," + false + ")";
+            string com = "insert into watts_groups (user_name,UserID,IsAdmin) values('" + groupName + "'," + userID + "," + false + ")";
             dal.Execute(com);
         }
         public static void sendMessage(int senderID, string content, int groupID)
@@ -47,7 +47,7 @@ namespace Watts2._0_With_Builtin_DAL.DAL
         /// <returns></returns>
         public static bool groupExist(string groupName)
         {
-            string com = "select groupID from watts_groups where group_name='" + groupName + "'";
+            string com = "select groupID from watts_groups where user_name='" + groupName + "'";
             return dal.GetTable(com).Rows.Count > 0;
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Watts2._0_With_Builtin_DAL.DAL
         /// <returns></returns>
         public static bool userInGroup(string groupName, int userID)
         {
-            string com = "select * from watts_group where userID =" + userID + " and group_name='" + groupName + "'";
+            string com = "select * from watts_group where userID =" + userID + " and user_name='" + groupName + "'";
             return dal.GetTable(com).Rows.Count > 0;
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace Watts2._0_With_Builtin_DAL.DAL
         /// <returns></returns>
         public static int getIDOfGroup(string groupName)
         {
-            string com = "select groupID from watts_groups where group_name='" + groupName + "'";
+            string com = "select groupID from watts_groups where user_name='" + groupName + "'";
             return int.Parse(dal.GetTable(com).Rows[0][0].ToString());
         }
         #endregion
