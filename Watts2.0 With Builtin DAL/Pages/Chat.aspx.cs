@@ -13,12 +13,10 @@ namespace Watts2._0_With_Builtin_DAL.Pages
 {
     public partial class Chat1 : System.Web.UI.Page
     {
-        protected string user;
+        protected static string user;
         protected string reciver;
         protected MySqlConnection conn;
         protected MySqlCommand command;
-        protected static bool Button1WasPressed = false;
-        protected static bool Button2WasPressed = false;
         protected string username { get; set; }
         protected string password { get; set; }
         protected static string userSearch;
@@ -30,10 +28,11 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             password = Request.QueryString["password"];
             password = password.Remove(password.Length - 1);
             user = username;
+            name.Text = user;
             conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["DATABASE"].ConnectionString);
         }
 
-        protected void ChooseSecondUser(object sender, EventArgs e)
+        /*protected void ChooseSecondUser(object sender, EventArgs e)
         {
             Session["reciver"] = hidden.Value;
             Indicator.Text = "Chatting with user:" + Session["reciver"].ToString();
@@ -41,18 +40,24 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             {
                 Timer2.Enabled = true;
             }
-            Button1WasPressed = true;
-            Button2WasPressed = false;
+            userChatList.DataSource = null;
+        }*/
+        protected void ChooseSecondUser(object sender, EventArgs e)
+        {
+            Indicator.Text = "Chatting with user:" + Session["reciver"].ToString();
+            if (Session["reciver"].ToString() != "" && Timer2.Enabled == false)
+            {
+                Timer2.Enabled = true;
+            }
             userChatList.DataSource = null;
         }
-
-        protected void SendMessageUser(object sender, EventArgs e)
+            protected void SendMessageUser(object sender, EventArgs e)
         {
-            if (Button1WasPressed && !Button2WasPressed)
+            if (displayCounter == 1)
             {
                 DAL.buisness_logic.sendMessagePrivate(Session["user"].ToString(), userMessage.Text, Session["reciver"].ToString());
             }
-            else if (Button2WasPressed && !Button1WasPressed)
+            else if (displayCounter == 0)
             {
                 DAL.buisness_logic.SendMessageGroup(DAL.GroupMethods.getIDOfGroup(Session["group"].ToString()), userMessage.Text, DAL.UserMethods.getIDOfUser(Session["user"].ToString()));
             }
@@ -68,7 +73,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         {
             DataTable dt1 = new DataTable();
             DataTable dt3 = new DataTable();
-            if (Button1WasPressed && Session["receiver"].ToString() != null || Button1WasPressed && Session["receiver"].ToString() != "")
+            if (displayCounter == 1)
             {
                 dt1 = DAL.MessageMethods.getPrivateMessages(DAL.UserMethods.getIDOfUser(user), DAL.UserMethods.getIDOfUser(Session["receiver"].ToString()));
 
@@ -97,9 +102,9 @@ namespace Watts2._0_With_Builtin_DAL.Pages
                 }
 
             }
-            else if (Button2WasPressed && Session["receiver"].ToString() != null || Button2WasPressed && Session["receiver"].ToString() != "")
+            else if (displayCounter == 0)
             {
-                dt1 = DAL.GroupMethods.getMessages(DAL.GroupMethods.getIDOfGroup(ChatGroupT.Text));
+                dt1 = DAL.GroupMethods.getMessages(DAL.GroupMethods.getIDOfGroup(groupChatT.Text));
 
                 List<objects.groupMessage> Marr = new List<objects.groupMessage>();
                 int sender;
@@ -219,27 +224,13 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             }
         }
 
-        protected void chooseGroup(object sender, EventArgs e)
-        {
-            Session["group"] = ChatGroupT.Text;
-            Indicator.Text = "Chatting with Group:" + Session["group"].ToString();
-            if (Session["group"].ToString() != "" && Timer2.Enabled == false)
-            {
-                Timer2.Enabled = true;
-            }
-            Button1WasPressed = false;
-            Button2WasPressed = true;
-            userChatList.DataSource = null;
-        }
-
         protected void CreateEvent(object sender, EventArgs e)
         {
             string EveName = eveName.Text;
             //DateTime EveDate = DateTime.ParseExact(day.Text + "/" + month.Text + "/" + year.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             // DateTime EveDate = DateTime.ParseExact(day.Text + "/" + month.Text + "/" + year.Text + " " + hour.Text + ":" + minutes.Text, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
-            if (Button1WasPressed || Button2WasPressed)
-            {
-                if (Button1WasPressed && !Button2WasPressed)
+            
+                if (displayCounter==1)
                 {
 
                 }
@@ -247,7 +238,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
                 {
 
                 }
-            }
+            
         }
         protected void calendar_SelectionChanged(object sender, EventArgs e)
         {
@@ -263,8 +254,8 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             {
                 Timer2.Enabled = true;
             }
-            Button1WasPressed = true;
-            Button2WasPressed = false;
+            displayCounter = 1;
+            displayCounter = 0;
             userChatList.DataSource = null;
 
         }

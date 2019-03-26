@@ -9,7 +9,7 @@
         <label for="menu__active" class="menu__active">
             <div class="menu__toggle">
                 <div class="icon">
-                    <div class="hamburger"></div>       
+                    <div class="hamburger"></div>
                 </div>
             </div>
             <input type="radio" name="arrow--up" id="degree--up-0" />
@@ -113,6 +113,49 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="style" runat="server">
     <style type="text/css">
+        .CastAside {
+            position: absolute;
+            left: 2000px;
+        }
+
+        digital-clock {
+            margin: auto;
+            position: relative;
+            position: relative;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 200px;
+            height: 60px;
+            color: #ffffff;
+            border: 2px solid #999;
+            border-radius: 4px;
+            text-align: center;
+            font: 50px/60px 'DIGITAL', Helvetica;
+            background: linear-gradient(90deg, #000, #555);
+        }
+
+        .topBar {
+            position: absolute;
+            left: 400px;
+            top: 90px;
+            border-radius: 17px;
+            border: 0px solid;
+            background-color: #c873ff;
+            width: 1000px;
+            height: 100px;
+        }
+
+        .Pimg {
+            border-radius: 50%;
+            border:0px solid;
+            margin-top: 5px;
+            margin-left:5px;
+            width: 90px;
+            height:90px;
+            position:relative;
+        }
         .ChatScreen {
             width: 1000px;
             height: 600px;
@@ -131,14 +174,13 @@
                 margin: 10px 0;
                 width: 440px;
                 margin-left: 120px;
-                border-radius:17px;
+                border-radius: 17px;
             }
 
             .ChatScreen .darker {
                 border-color: #c1264e;
                 margin-left: 287%;
-                background:#ffb8e9;
-
+                background: #ffb8e9;
             }
 
             .ChatScreen .lighter {
@@ -146,14 +188,16 @@
                 background: #E1B3FF;
             }
 
-            .ChatScreen .lighter .mdate{
-                text-align:right;
+                .ChatScreen .lighter .mdate {
+                    text-align: right;
+                }
+
+            .ChatScreen .darker .mdate {
+                text-align: left;
             }
-            .ChatScreen .darker .mdate{
-                text-align:left;
-            }
-            .ChatScreen .darker .sender{
-                text-align:right;
+
+            .ChatScreen .darker .sender {
+                text-align: right;
             }
 
         span > div.container {
@@ -168,76 +212,83 @@
             clear: both;
             display: table;
         }
-        .SecondUser{
+
+        .SecondUser {
             border-bottom: 2px solid #dedede;
-            left:25%;
-            width:600px;
-            height:50px;
-            z-index:6;
-            text-align:center;
-            font:300;
-            position:sticky;
+            left: 25%;
+            width: 600px;
+            height: 50px;
+            z-index: 6;
+            text-align: center;
+            font: 300;
+            position: sticky;
         }
+
         .friendClass {
             border: 2px solid #dedede;
             background-color: #E1B3FF;
             border-radius: 18.3px;
             padding: 10px;
             margin: 10px 0;
-            width: 345px;   
-            height:84px;
+            width: 345px;
+            height: 84px;
             margin-left: 10px;
             border-color: #E1B3FF;
         }
+
         .friendClass2 {
             border: 2px solid #dedede;
             background-color: #E1B3FF;
             border-radius: 18.3px;
             padding: 10px;
             margin: 10px 0;
-            width: 345px;   
-            height:84px;
+            width: 345px;
+            height: 84px;
             margin-left: 10px;
             border-color: #E1B3FF;
         }
+
         .tbl {
             width: 200px;
             color: white;
             z-index: 3;
-            background-color:#f0d9ff;
-            
+            background-color: #f0d9ff;
         }
-        .tbl2{
+
+        .tbl2 {
             width: 200px;
-            color:white;
-            z-index:3;
+            color: white;
+            z-index: 3;
         }
-        .ChatText{
+
+        .ChatText {
             -webkit-border-radius: 27px;
-             border-radius: 27px;
-             position:absolute;
-             z-index:8;
-             
+            border-radius: 27px;
+            position: absolute;
+            z-index: 8;
         }
-        .headerFriendTbl{
+
+        .headerFriendTbl {
             -webkit-border-radius: 18px;
-                -moz-border-radius: 18px;
-                border-radius: 18px;
-                position:relative;
-                top:50px;
-                width:345px;
-                height:37px;
+            -moz-border-radius: 18px;
+            border-radius: 18px;
+            position: relative;
+            top: 50px;
+            width: 345px;
+            height: 37px;
         }
-        .headerTblFriend{
-            border-top-left-radius:18px;
-            border-top-right-radius:18px;
-            z-index:7;
-            position:relative;
-            background-color:#c873ff;
-            width:363px;
-            height:95px;
+
+        .headerTblFriend {
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            z-index: 7;
+            position: relative;
+            background-color: #c873ff;
+            width: 363px;
+            height: 95px;
         }
-        .MainContainer{
+
+        .MainContainer {
             background-color: #f0d9ff;
             border-bottom-left-radius: 17px;
             border-bottom-right-radius: 17px;
@@ -248,39 +299,60 @@
             width: 1000px;
             height: 94px;
         }
+
         .onoffswitch {
-    position: absolute; width: 60px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-    z-index:8;
-}
-.onoffswitch-checkbox {
-    display: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    height: 20px; padding: 0; line-height: 20px;
-    border: 2px solid #E3E3E3; border-radius: 20px;
-    background-color: #FFFFFF;
-    transition: background-color 0.3s ease-in;
-}
-.onoffswitch-label:before {
-    content: "";
-    display: block; width: 20px; margin: 0px;
-    background: #f0d9ff;
-    position: absolute; top: 0; bottom: 0;
-    right: 38px;
-    border: 2px solid #E3E3E3; border-radius: 20px;
-    transition: all 0.3s ease-in 0s; 
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label {
-    background-color: #85FFEA;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-   border-color: #85FFEA;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    right: 0px; 
-}
+            position: absolute;
+            width: 60px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            z-index: 8;
+        }
+
+        .onoffswitch-checkbox {
+            display: none;
+        }
+
+        .onoffswitch-label {
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+            height: 20px;
+            padding: 0;
+            line-height: 20px;
+            border: 2px solid #E3E3E3;
+            border-radius: 20px;
+            background-color: #FFFFFF;
+            transition: background-color 0.3s ease-in;
+        }
+
+            .onoffswitch-label:before {
+                content: "";
+                display: block;
+                width: 20px;
+                margin: 0px;
+                background: #f0d9ff;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 38px;
+                border: 2px solid #E3E3E3;
+                border-radius: 20px;
+                transition: all 0.3s ease-in 0s;
+            }
+
+        .onoffswitch-checkbox:checked + .onoffswitch-label {
+            background-color: #85FFEA;
+        }
+
+            .onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+                border-color: #85FFEA;
+            }
+
+                .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+                    right: 0px;
+                }
+
         body {
             padding: 0;
             margin: 0;
@@ -657,41 +729,49 @@
             <asp:AsyncPostBackTrigger ControlID="Timer2" EventName="Tick" />
         </Triggers>
     </asp:UpdatePanel>
-        <asp:Label ID="Indicator" runat="server" Style="
-            border-bottom: 2px solid #dedede;
-            border-left: 2px solid #dedede;
-            border-right: 2px solid #dedede;
-            left:250px;
-            width:200px;
-            height:50px;
-            z-index:7;
-            position:sticky;"></asp:Label>
+    <asp:Label ID="Indicator" runat="server" Style="border-bottom: 2px solid #dedede; border-left: 2px solid #dedede; border-right: 2px solid #dedede; left: 250px; width: 200px; height: 50px; z-index: 7; position: sticky;"></asp:Label>
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="searchLabel">
-        <div class="MainTwoContainer" style=" position:absolute; width:250px; left:-150px;">
-            <div class="headerTblFriend" style="left:-60px;">
-                <asp:Label ID="Label1" runat="server" style="font-size:xx-large; position:relative; left:110px; top:25px; " Text="Add friend"></asp:Label>
-            </div>
-             <div class="friendClass2" style="width:363px; position:relative; left:-70px; top:-10px; border-top-left-radius:0px; border-top-right-radius:0px;">
-                <asp:TextBox ID="searchT" runat="server" style="position:relative; width:280px; height:70%; top:-1px; border:0px solid;" CssClass="headerFriendTbl" ></asp:TextBox>
-                <asp:Button ID="searchB" runat="server" OnClick="addfriend" Style="position: relative; height:50px; width:50px; border: 0px solid;" CssClass="ChatText" Text="Add" />
-            </div>
+    <div class="MainTwoContainer" style="position: absolute; width: 250px;">
+        <div class="headerTblFriend" style="left: -60px;">
+            <asp:Label ID="Label1" runat="server" Style="font-size: xx-large; position: relative; left: 110px; top: 25px;" Text="Add friend"></asp:Label>
         </div>
-    <div class="searchClass" style="position:absolute; top:150px;">
-        <asp:Label ID="groupChatL" runat="server" Style="position: relative; top:80px;" Text="Group name"></asp:Label>
-        <asp:TextBox ID="groupChatT" runat="server" Style="position: relative; top:80px;" />
-        <asp:Button ID="groupChatB" runat="server" Style="position: relative; top:80px;" Text="Create group" OnClick="createGroup" />
-        <asp:Label ID="Label2" runat="server" Style="position: relative; top:80px;"></asp:Label>
+        <div class="friendClass2" style="width: 363px; position: relative; left: -70px; top: -10px; border-top-left-radius: 0px; border-top-right-radius: 0px;">
+            <asp:TextBox ID="searchT" runat="server" Style="position: relative; width: 280px; height: 70%; top: -1px; border: 0px solid;" CssClass="headerFriendTbl"></asp:TextBox>
+            <asp:Button ID="searchB" runat="server" OnClick="addfriend" Style="position: relative; height: 50px; width: 50px; border: 0px solid;" CssClass="ChatText" Text="Add" />
+        </div>
+    </div>
+    <div class="MainTwoContainer" style="position: absolute; top: 200px; width: 250px;">
+        <div class="headerTblFriend" style="left: -60px;">
+            <asp:Label ID="groupChatL" runat="server" Style="position: relative; top: 30px; left: 85px; font-size: xx-large;" Text="Create a group"></asp:Label>
+        </div>
+        <div class="friendClass2" style="width: 363px; position: relative; left: -70px; top: -10px; border-top-left-radius: 0px; border-top-right-radius: 0px;">
+            <asp:TextBox ID="groupChatT" runat="server" Style="position: relative; width: 280px; height: 70%; top: -1px; border: 0px solid;" CssClass="headerFriendTbl" />
+            <asp:Button ID="groupChatB" runat="server" Style="position: relative; height: 50px; width: 50px; border: 0px solid;" CssClass="ChatText" Text="Create group" OnClick="createGroup" />
+            <asp:Label ID="Label2" runat="server" Style="position: relative; top: 0px;"></asp:Label>
+        </div>
 
-        <asp:Label ID="ChatGroup" runat="server" Style="position: relative; top:90px;" Text="Chat with group:"></asp:Label>
-        <asp:TextBox ID="ChatGroupT" runat="server" Style="position: absolute; top: 700px; left: 1700px;"></asp:TextBox>
-        <asp:Button ID="ChatGroupB" runat="server" Style="position: absolute; top: 750px; left: 1600px;" OnClick="chooseGroup" Text="createGroup" />
+    </div>
+    <div class="MainTwoContainer" style="position: absolute; top: 400px; width: 250px;">
+        <div class="headerTblFriend" style="left: -60px;">
+            <asp:Label ID="DateL" runat="server" Text="Create an event" Style="font-size: xx-large; position: relative; left: 82px; top: 30px;"></asp:Label>
+        </div>
+        <div class="friendClass2" style="width: 363px; position: relative; left: -70px; top: -10px; border-top-left-radius: 0px; border-top-right-radius: 0px; height: 200px;">
+            <asp:Label ID="DL" runat="server" Text="Day:" Style="width: 20px;"></asp:Label>
+            <asp:TextBox ID="DayT" runat="server" Style="position: relative; width: 80px; left: 35px; top: 2px;" CssClass="headerFriendTbl"></asp:TextBox>
+            <br />
+            <asp:Label ID="ML" runat="server" Text="Month:" Style="width: 20px;"></asp:Label>
+            <asp:TextBox ID="MonthT" runat="server" CssClass="headerFriendTbl" Style="width: 80px; left: 19px; top: 5px;"></asp:TextBox>
+            <br />
+            <asp:Label ID="YL" runat="server" Text="Year" Style="width: 20px;"></asp:Label>
+            <asp:TextBox ID="YearT" runat="server" Style="position: relative; width: 80px; left: 37px; top: 5px;" CssClass="headerFriendTbl"></asp:TextBox>
+            <asp:Button ID="CalanderB" runat="server" Style="position: relative; float: right; left: -5px; top: -40px; height: 50px; width: 50px; border: 0px solid;" CssClass="ChatText" Text="Create" />
+        </div>
     </div>
 
 
 
-    
 </asp:Content>
 
 <asp:Content ID="Content10" runat="server" ContentPlaceHolderID="searchbar">
@@ -700,7 +780,7 @@
     <label class="onoffswitch-label" for="myonoffswitch" ></label>
     </div>--%>
     <div class="HiddenClass">
-        <asp:HiddenField ID="hidden" runat="server"/>
+        <asp:HiddenField ID="hidden" runat="server" />
     </div>
     <div class="headerTblFriend">
         <asp:Button ID="displaybutton" runat="server" OnClick="displaybutton_Click" CssClass="ChatText" />
@@ -713,12 +793,12 @@
         <ContentTemplate>
             <asp:Timer Interval="1000" Enabled="true" OnTick="updateTable" runat="server" ID="Timer1"></asp:Timer>
             <asp:DataList ID="friendsList" RepeatDirection="Vertical" runat="server"
-                Style="position: relative; width:363px; border-bottom-left-radius:10px; border-bottom-right-radius:10px;" OnItemCommand="friendsList_ItemCommand" CssClass="tbl">
+                Style="position: relative; width: 363px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;" OnItemCommand="friendsList_ItemCommand" CssClass="tbl">
                 <ItemTemplate>
                     <div class="friendClass" onclick="getFriend('<%# Eval("user_name")%>')">
                         <asp:Label ID="friendID" runat="server" CssClass="derivativeFriendClass" Text='<%# Eval("user_name")%>'></asp:Label>
-                        
-                        <asp:Button ID="ChatButton" runat="server" style="left:90px; width:250px; height:50px; font-size:x-large; background-color:transparent; border:1px solid; border-color:white; " CssClass="ChatText" Text="Chat" OnClick="ChooseSecondUser" />
+
+                        <asp:Button ID="ChatButton" runat="server" Style="left: 90px; width: 250px; height: 50px; font-size: x-large; background-color: transparent; border: 1px solid; border-color: white;" CssClass="ChatText" Text="Chat" OnClick="ChooseSecondUser" />
                     </div>
                 </ItemTemplate>
             </asp:DataList>
@@ -738,9 +818,18 @@
 <asp:Content ID="Content8" runat="server" ContentPlaceHolderID="messageBar">
     <div class="MainContainer">
         <div class="ChatText">
-           <asp:TextBox ID="userMessage" runat="server" Style="top:8px; margin-left:19px; height:54px; width:961px; border:0px solid; " CssClass="ChatText"></asp:TextBox>
-           <asp:Button ID="Button1" runat="server" OnClick="SendMessageUser" Style="position:absolute; left:927px; z-index:9; height: 54px; width:54px; border-radius:50%;top:8px; border:0px solid;" CssClass="ChatText" Text="Send" />
+            <asp:TextBox ID="userMessage" runat="server" Style="top: 8px; margin-left: 19px; height: 54px; width: 961px; border: 0px solid;" CssClass="ChatText"></asp:TextBox>
+            <asp:Button ID="Button1" runat="server" OnClick="SendMessageUser" Style="position: absolute; left: 927px; z-index: 9; height: 54px; width: 54px; border-radius: 50%; top: 8px; border: 0px solid;" CssClass="ChatText" Text="Send" />
         </div>
+    </div>
+</asp:Content>
+
+<asp:Content ID="Content11" runat="server" ContentPlaceHolderID="TopBar">
+    <div class="topBar">
+        <asp:Image runat="server" ID="profilepic" CssClass="Pimg" ImageUrl="~/photos/group_icon.png" />
+        <asp:Label runat="server" ID="name" style="position:relative; margin-left:10px; left:50px; top:-30px; font-size:50px;"></asp:Label>
+        <div class="digital-clock" style="position:relative; left:500px; top:-85px; font-size: 50px;">00:00:00</div>
+        <asp:Label runat="server" ID="date"></asp:Label>
     </div>
 </asp:Content>
 <asp:Content ID="Content9" runat="server" ContentPlaceHolderID="scripts">
@@ -755,18 +844,45 @@
         function getFriend(username) {
             EndUser = username;
             alert(EndUser);
-            
+
             //alert($(".HiddenClass").val());
             //$('#hidden').val(EndUser);
             //alert($('#hidden').val());
             //$("#ChatButton").click();
+        }
+        function clockUpdate() {
+            var date = new Date();
+            $('.digital-clock').css({ 'color': '#fff', 'text-shadow': '0 0 6px #ff0' });
+            function addZero(x) {
+                if (x < 10) {
+                    return x = '0' + x;
+                } else {
+                    return x;
+                }
+            }
+
+            function twelveHour(x) {
+                if (x > 12) {
+                    return x = x - 12;
+                } else if (x == 0) {
+                    return x = 12;
+                } else {
+                    return x;
+                }
+            }
+
+            var h = addZero(twelveHour(date.getHours()));
+            var m = addZero(date.getMinutes());
+            var s = addZero(date.getSeconds());
+
+            $('.digital-clock').text(h + ':' + m + ':' + s)
         }
         function setDisplay() {
             $(".onoffswitch").click(function () {
 
             })
         }
-        $(document).ready(function(){
+        $(document).ready(function () {
             $(".Home").click(function () {
                 ChatLink();
                 $(".Home").attr("href", url);
@@ -774,6 +890,8 @@
             $(".friendClass").click(function () {
                 getFriend();
             });
-         });
+            clockUpdate();
+            setInterval(clockUpdate, 1000);
+        });
     </script>
 </asp:Content>
