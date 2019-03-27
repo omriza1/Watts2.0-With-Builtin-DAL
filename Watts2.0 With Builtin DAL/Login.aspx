@@ -43,16 +43,23 @@
 </asp:Content>
 
 <asp:Content ID="Content7" ContentPlaceHolderID="Submit" runat="server">
-    <asp:Button Text="register" OnClick="Rsub" style="position:absolute;top:370px;left:880px;" runat="server" />
+    <asp:Button Text="register" OnClick="Rsub" style="position:absolute;top:370px;left:840px; width:100px; height:30px;" runat="server" CssClass="ChatText" />
     
 </asp:Content>
 <asp:Content ID="LoginButton" ContentPlaceHolderID="login" runat="server">
-    <asp:Button Text="login" OnClick="Lsub" runat="server" style="position:absolute;top:370px;left:950px;" />
+    <asp:Button Text="login" OnClick="Lsub" runat="server" style="position:absolute;top:370px;left:970px; width:100px; height:30px;" CssClass="ChatText" />
 </asp:Content>
 
 <asp:Content ID="Style" ContentPlaceHolderID="style" runat="server">
     <style type="text/css">
-        
+        .ChatText {
+            -webkit-border-radius: 27px;
+            border-radius: 27px;
+            position: absolute;
+            z-index: 8;
+            border:0px solid;
+            background-color:#E1B3FF;
+        }
         body{
 		background-image:url("photos/loginPhotos/firstscreen.png");
 		background-size:1920px 1080px;

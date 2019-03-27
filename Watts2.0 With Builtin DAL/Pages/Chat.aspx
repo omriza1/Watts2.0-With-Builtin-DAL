@@ -181,6 +181,7 @@
                 border-color: #c1264e;
                 margin-left: 287%;
                 background: #ffb8e9;
+                width:400px;
             }
 
             .ChatScreen .lighter {
@@ -783,7 +784,7 @@
         <asp:HiddenField ID="hidden" runat="server" />
     </div>
     <div class="headerTblFriend">
-        <asp:Button ID="displaybutton" runat="server" OnClick="displaybutton_Click" CssClass="ChatText" />
+        <asp:Button ID="displaybutton" runat="server" OnClick="displaybutton_Click" CssClass="ChatText" style="background-color:#f0d9ff;" Text="Change View" />
         <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
     </div>
 </asp:Content>
