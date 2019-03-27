@@ -36,6 +36,13 @@
         ::-webkit-scrollbar-thumb:hover {
           background: #e869e9; 
         }
+        .css1 {
+            position: absolute;
+            top: 200px;
+            left: 1480px;
+            width: 300px;
+            height: 1000px;
+        }
     .css2{
            top:295px;
            left:20px;
@@ -54,9 +61,9 @@
             <asp:ContentPlaceHolder ID="ChatUrlScript" runat="server"></asp:ContentPlaceHolder>
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
             <asp:ContentPlaceHolder ID="Menu" runat="server"></asp:ContentPlaceHolder>
-            
+            <div class="css1">
             <asp:ContentPlaceHolder ID="searchLabel" runat="server"></asp:ContentPlaceHolder>
-
+            </div>
              <div class="searchFriend" style="top:200px; left:20px; position:absolute;">
             <asp:ContentPlaceHolder ID="searchbar" runat="server"></asp:ContentPlaceHolder>
             </div>

@@ -67,15 +67,6 @@ namespace Watts2._0_With_Builtin_DAL.Pages {
         protected global::System.Web.UI.WebControls.TextBox searchT;
         
         /// <summary>
-        /// Indicator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Indicator;
-        
-        /// <summary>
         /// searchB control.
         /// </summary>
         /// <remarks>
@@ -83,6 +74,15 @@ namespace Watts2._0_With_Builtin_DAL.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button searchB;
+        
+        /// <summary>
+        /// Indicator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Indicator;
         
         /// <summary>
         /// UserName control.

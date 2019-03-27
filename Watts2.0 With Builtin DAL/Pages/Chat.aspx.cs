@@ -32,8 +32,8 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             name.Text = user;
             conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["DATABASE"].ConnectionString);
         }
-        
-            protected void SendMessageUser(object sender, EventArgs e)
+
+        protected void SendMessageUser(object sender, EventArgs e)
         {
             if (displayCounter == 1)
             {
@@ -48,68 +48,73 @@ namespace Watts2._0_With_Builtin_DAL.Pages
 
         protected void UpdateChatTable1(object sender, EventArgs e)
         {
-            sortTable();
+            if (chosenUser != null && chosenUser != "")
+            {
+                sortTable();
+            }
         }
         protected void sortTable()
         {
             DataTable dt1 = new DataTable();
             DataTable dt3 = new DataTable();
-            if (displayCounter == 1)
+            if (user != null && user != "")
             {
-                dt1 = DAL.MessageMethods.getPrivateMessages(DAL.UserMethods.getIDOfUser(user), DAL.UserMethods.getIDOfUser(chosenUser));
-
-                List<objects.Message> Marr = new List<objects.Message>();
-                int sender;
-                string content;
-                int receiver;
-                string Mdate;
-                for (int i = 0; i < dt1.Rows.Count; i++)
+                if (displayCounter == 1)
                 {
-                    sender = int.Parse(dt1.Rows[i]["senderID"].ToString());
-                    content = dt1.Rows[i]["content"].ToString();
-                    receiver = int.Parse(dt1.Rows[i]["receiverID"].ToString());
-                    Mdate = dt1.Rows[i]["Mdate"].ToString();
-                    Marr.Add(new objects.Message(sender, content, receiver, Mdate));
-                }
+                    dt1 = DAL.MessageMethods.getPrivateMessages(DAL.UserMethods.getIDOfUser(user), DAL.UserMethods.getIDOfUser(chosenUser));
 
-                dt3.Columns.Add("sender", typeof(string));
-                dt3.Columns.Add("content", typeof(string));
-                dt3.Columns.Add("reciver", typeof(string));
-                dt3.Columns.Add("Mdate", typeof(string));
-                dt3.Columns.Add("containerStyle", typeof(string));
-                for (int i = 0; i < Marr.Count; i++)
+                    List<objects.Message> Marr = new List<objects.Message>();
+                    int sender;
+                    string content;
+                    int receiver;
+                    string Mdate;
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        sender = int.Parse(dt1.Rows[i]["senderID"].ToString());
+                        content = dt1.Rows[i]["content"].ToString();
+                        receiver = int.Parse(dt1.Rows[i]["receiverID"].ToString());
+                        Mdate = dt1.Rows[i]["Mdate"].ToString();
+                        Marr.Add(new objects.Message(sender, content, receiver, Mdate));
+                    }
+
+                    dt3.Columns.Add("sender", typeof(string));
+                    dt3.Columns.Add("content", typeof(string));
+                    dt3.Columns.Add("reciver", typeof(string));
+                    dt3.Columns.Add("Mdate", typeof(string));
+                    dt3.Columns.Add("containerStyle", typeof(string));
+                    for (int i = 0; i < Marr.Count; i++)
+                    {
+                        dt3.Rows.Add(Marr[i].GetSender() + ":", Marr[i].GetContent(), Marr[i].GetReciver(), Marr[i].GetTime(), (Marr[i].GetSender() == user) ? "lighter" : "darker");
+                    }
+
+                }
+                else if (displayCounter == 0)
                 {
-                    dt3.Rows.Add(Marr[i].GetSender() + ":", Marr[i].GetContent(), Marr[i].GetReciver(), Marr[i].GetTime(), (Marr[i].GetSender() == user) ? "lighter" : "darker");
-                }
+                    dt1 = DAL.GroupMethods.getMessages(DAL.GroupMethods.getIDOfGroup(chosenUser));
 
+                    List<objects.groupMessage> Marr = new List<objects.groupMessage>();
+                    int sender;
+                    string content;
+                    string Mdate;
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        sender = int.Parse(dt1.Rows[i]["senderID"].ToString());
+                        content = dt1.Rows[i]["content"].ToString();
+                        Mdate = dt1.Rows[i]["Mdate"].ToString();
+                        Marr.Add(new objects.groupMessage(sender, content, Mdate));
+                    }
+
+                    dt3.Columns.Add("sender", typeof(string));
+                    dt3.Columns.Add("content", typeof(string));
+                    dt3.Columns.Add("Mdate", typeof(string));
+                    dt3.Columns.Add("containerStyle", typeof(string));
+                    for (int i = 0; i < Marr.Count; i++)
+                    {
+                        dt3.Rows.Add(Marr[i].GetSender() + ":", Marr[i].GetContent(), Marr[i].GetTime(), (Marr[i].GetSender() == user) ? "lighter" : "darker");
+                    }
+                }
+                userChatList.DataSource = dt3;
             }
-            else if (displayCounter == 0)
-            {
-                dt1 = DAL.GroupMethods.getMessages(DAL.GroupMethods.getIDOfGroup(chosenUser));
-
-                List<objects.groupMessage> Marr = new List<objects.groupMessage>();
-                int sender;
-                string content;
-                string Mdate;
-                for (int i = 0; i < dt1.Rows.Count; i++)
-                {
-                    sender = int.Parse(dt1.Rows[i]["senderID"].ToString());
-                    content = dt1.Rows[i]["content"].ToString();
-                    Mdate = dt1.Rows[i]["Mdate"].ToString();
-                    Marr.Add(new objects.groupMessage(sender, content, Mdate));
-                }
-
-                dt3.Columns.Add("sender", typeof(string));
-                dt3.Columns.Add("content", typeof(string));
-                dt3.Columns.Add("Mdate", typeof(string));
-                dt3.Columns.Add("containerStyle", typeof(string));
-                for (int i = 0; i < Marr.Count; i++)
-                {
-                    dt3.Rows.Add(Marr[i].GetSender() + ":", Marr[i].GetContent(), Marr[i].GetTime(), (Marr[i].GetSender() == user) ? "lighter" : "darker");
-                }
-            }
-            userChatList.DataSource = dt3;
-
             DataBind();
         }
 
@@ -140,11 +145,11 @@ namespace Watts2._0_With_Builtin_DAL.Pages
                     conn.Close();
                 }
             }
-            else if(displayCounter == 0)
+            else if (displayCounter == 0)
             {
                 if (userSearch == null)
                 {
-                    command = new MySqlCommand("select user_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user) , conn);
+                    command = new MySqlCommand("select user_name from watts_groups where userID = " + DAL.UserMethods.getIDOfUser(user), conn);
                     conn.Open();
                     MySqlDataAdapter adap = new MySqlDataAdapter(command);
                     DataTable dt1 = new DataTable();
@@ -210,16 +215,16 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             string EveName = eveName.Text;
             //DateTime EveDate = DateTime.ParseExact(day.Text + "/" + month.Text + "/" + year.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
             // DateTime EveDate = DateTime.ParseExact(day.Text + "/" + month.Text + "/" + year.Text + " " + hour.Text + ":" + minutes.Text, "dd/MM/yyyy HH:mm", CultureInfo.InvariantCulture);
-            
-                if (displayCounter==1)
-                {
 
-                }
-                else
-                {
+            if (displayCounter == 1)
+            {
 
-                }
-            
+            }
+            else
+            {
+
+            }
+
         }
         protected void calendar_SelectionChanged(object sender, EventArgs e)
         {
@@ -231,12 +236,6 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             friendsList.SelectedIndex = e.Item.ItemIndex;
             chosenUser = ((Label)friendsList.SelectedItem.FindControl("friendID")).Text;
             Indicator.Text = "Chatting with user: " + chosenUser;
-            if (chosenUser != "" && Timer2.Enabled == false && chosenUser != null && Timer2.Enabled == false)
-            {
-                Timer2.Enabled = true;
-            }
-            userChatList.DataSource = null;
-
         }
 
         protected void searchF_TextChanged(object sender, EventArgs e)

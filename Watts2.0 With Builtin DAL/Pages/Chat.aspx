@@ -712,7 +712,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="chatScreen" runat="server">
     <asp:UpdatePanel ID="updatePanel2" UpdateMode="Conditional" runat="server">
         <ContentTemplate>
-            <asp:Timer ID="Timer2" Interval="1000" OnTick="UpdateChatTable1" Enabled="false" runat="server"></asp:Timer>
+            <asp:Timer ID="Timer2" Interval="1000" OnTick="UpdateChatTable1" Enabled="true" runat="server"></asp:Timer>
             <asp:DataList ID="userChatList" runat="server" CssClass="tbl2" RepeatDirection="Vertical" Style="position: absolute; top: 30px; left: 0px; right: 688px;" RepeatLayout="Flow">
                 <ItemTemplate>
                     <div class="container <%# Eval("containerStyle") %>">
@@ -729,7 +729,7 @@
             <asp:AsyncPostBackTrigger ControlID="Timer2" EventName="Tick" />
         </Triggers>
     </asp:UpdatePanel>
-    <asp:Label ID="Indicator" runat="server" Style="border-bottom: 2px solid #dedede; border-left: 2px solid #dedede; border-right: 2px solid #dedede; left: 250px; width: 200px; height: 50px; z-index: 9; position: sticky; color:black;"></asp:Label>
+    <asp:Label ID="Indicator" runat="server" Style="border-bottom: 2px solid #dedede; border-left: 2px solid #dedede; border-right: 2px solid #dedede; left: 250px; width: 200px; height: 50px; z-index: 9; position: sticky; color:black;" Enabled="true"></asp:Label>
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="searchLabel">
@@ -843,12 +843,7 @@
         }
         function getFriend(username) {
             EndUser = username;
-            alert(EndUser);
-
-            //alert($(".HiddenClass").val());
-            //$('#hidden').val(EndUser);
-            //alert($('#hidden').val());
-            //$("#ChatButton").click();
+            //alert(EndUser);
         }
         function clockUpdate() {
             var date = new Date();

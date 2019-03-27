@@ -133,6 +133,12 @@
             width:363px;
             height:95px;
         }
+        .ChatText {
+            -webkit-border-radius: 27px;
+            border-radius: 27px;
+            position: absolute;
+            z-index: 8;
+        }
         .friendClass {
             border: 2px solid #dedede;
             background-color: #E1B3FF;
@@ -141,6 +147,17 @@
             margin: 10px 0;
             width: 345px;   
             height:84px;
+            margin-left: 10px;
+            border-color: #E1B3FF;
+        }
+        .friendClass2 {
+            border: 2px solid #dedede;
+            background-color: #E1B3FF;
+            border-radius: 18.3px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 345px;
+            height: 84px;
             margin-left: 10px;
             border-color: #E1B3FF;
         }
@@ -584,7 +601,6 @@
     <label class="onoffswitch-label" for="myonoffswitch" ></label>
     </div>--%>
     <div class="headerTblFriend">
-       
         <asp:TextBox ID="searchF" runat="server" CssClass="headerFriendTbl" OnTextChanged="searchF_TextChanged"></asp:TextBox>
     </div>
 </asp:Content>
@@ -610,11 +626,15 @@
 
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="searchLabel">
-    <div class="searchClass">
-        <asp:Label ID="Label1" runat="server" Style="position: absolute; top: 50px; left: 1600px; z-index: 3" Text="Add friend:"></asp:Label>
-        <asp:TextBox ID="searchT" runat="server" Style="position: absolute; top: 50px; left: 1685px;"></asp:TextBox>
-        <asp:Label ID="Indicator" runat="server" Style="position: absolute; top: 80px; left: 1600px;"></asp:Label>
-        <asp:Button ID="searchB" runat="server" OnClick="addfriend" Style="position: absolute; top: 100px; left: 1700px;" Text="Add" />
+    <div class="MainTwoContainer" style="position: absolute; width: 250px;">
+        <div class="headerTblFriend" style="left: -60px;">
+            <asp:Label ID="Label1" runat="server" Style="font-size: xx-large; position: relative; left: 110px; top: 25px;" Text="Add friend"></asp:Label>
+        </div>
+        <div class="friendClass2" style="width: 363px; position: relative; left: -70px; top: -10px; border-top-left-radius: 0px; border-top-right-radius: 0px;">
+            <asp:TextBox ID="searchT" runat="server" Style="position: relative; width: 280px; height: 70%; top: -1px; border: 0px solid;" CssClass="headerFriendTbl"></asp:TextBox>
+            <asp:Button ID="searchB" runat="server" OnClick="addfriend" Style="position: relative; height: 50px; width: 50px; border: 0px solid;" CssClass="ChatText" Text="Add" />
+            <asp:Label ID="Indicator" runat="server" Style="position: absolute; top: 80px; left: 1600px;"></asp:Label>
+        </div>
     </div>
 </asp:Content>
 
