@@ -21,6 +21,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected string password { get; set; }
         protected static string userSearch;
         protected static int displayCounter = 1;
+        protected static string chosenUser;
         protected void Page_Load(object sender, EventArgs e)
         {
             username = Request.QueryString["username"];
@@ -31,42 +32,22 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             name.Text = user;
             conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["DATABASE"].ConnectionString);
         }
-
-        /*protected void ChooseSecondUser(object sender, EventArgs e)
-        {
-            Session["reciver"] = hidden.Value;
-            Indicator.Text = "Chatting with user:" + Session["reciver"].ToString();
-            if (Session["reciver"].ToString() != "" && Timer2.Enabled == false)
-            {
-                Timer2.Enabled = true;
-            }
-            userChatList.DataSource = null;
-        }*/
-        protected void ChooseSecondUser(object sender, EventArgs e)
-        {
-            Indicator.Text = "Chatting with user:" + Session["reciver"].ToString();
-            if (Session["reciver"].ToString() != "" && Timer2.Enabled == false)
-            {
-                Timer2.Enabled = true;
-            }
-            userChatList.DataSource = null;
-        }
+        
             protected void SendMessageUser(object sender, EventArgs e)
         {
             if (displayCounter == 1)
             {
-                DAL.buisness_logic.sendMessagePrivate(Session["user"].ToString(), userMessage.Text, Session["reciver"].ToString());
+                DAL.buisness_logic.sendMessagePrivate(user, userMessage.Text, chosenUser);
             }
             else if (displayCounter == 0)
             {
-                DAL.buisness_logic.SendMessageGroup(DAL.GroupMethods.getIDOfGroup(Session["group"].ToString()), userMessage.Text, DAL.UserMethods.getIDOfUser(Session["user"].ToString()));
+                DAL.buisness_logic.SendMessageGroup(DAL.GroupMethods.getIDOfGroup(chosenUser), userMessage.Text, DAL.UserMethods.getIDOfUser(user));
             }
 
         }
 
         protected void UpdateChatTable1(object sender, EventArgs e)
         {
-            string chosenuser = "";
             sortTable();
         }
         protected void sortTable()
@@ -75,7 +56,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             DataTable dt3 = new DataTable();
             if (displayCounter == 1)
             {
-                dt1 = DAL.MessageMethods.getPrivateMessages(DAL.UserMethods.getIDOfUser(user), DAL.UserMethods.getIDOfUser(Session["receiver"].ToString()));
+                dt1 = DAL.MessageMethods.getPrivateMessages(DAL.UserMethods.getIDOfUser(user), DAL.UserMethods.getIDOfUser(chosenUser));
 
                 List<objects.Message> Marr = new List<objects.Message>();
                 int sender;
@@ -104,7 +85,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             }
             else if (displayCounter == 0)
             {
-                dt1 = DAL.GroupMethods.getMessages(DAL.GroupMethods.getIDOfGroup(groupChatT.Text));
+                dt1 = DAL.GroupMethods.getMessages(DAL.GroupMethods.getIDOfGroup(chosenUser));
 
                 List<objects.groupMessage> Marr = new List<objects.groupMessage>();
                 int sender;
@@ -248,14 +229,12 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected void friendsList_ItemCommand(object source, DataListCommandEventArgs e)
         {
             friendsList.SelectedIndex = e.Item.ItemIndex;
-            Session["reciver"] = ((Label)friendsList.SelectedItem.FindControl("friendID")).Text;
-            Indicator.Text = "Chatting with user:" + Session["reciver"].ToString();
-            if (Session["reciver"].ToString() != "" && Timer2.Enabled == false)
+            chosenUser = ((Label)friendsList.SelectedItem.FindControl("friendID")).Text;
+            Indicator.Text = "Chatting with user: " + chosenUser;
+            if (chosenUser != "" && Timer2.Enabled == false && chosenUser != null && Timer2.Enabled == false)
             {
                 Timer2.Enabled = true;
             }
-            displayCounter = 1;
-            displayCounter = 0;
             userChatList.DataSource = null;
 
         }

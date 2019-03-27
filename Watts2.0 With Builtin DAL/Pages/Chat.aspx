@@ -729,7 +729,7 @@
             <asp:AsyncPostBackTrigger ControlID="Timer2" EventName="Tick" />
         </Triggers>
     </asp:UpdatePanel>
-    <asp:Label ID="Indicator" runat="server" Style="border-bottom: 2px solid #dedede; border-left: 2px solid #dedede; border-right: 2px solid #dedede; left: 250px; width: 200px; height: 50px; z-index: 7; position: sticky;"></asp:Label>
+    <asp:Label ID="Indicator" runat="server" Style="border-bottom: 2px solid #dedede; border-left: 2px solid #dedede; border-right: 2px solid #dedede; left: 250px; width: 200px; height: 50px; z-index: 9; position: sticky; color:black;"></asp:Label>
 </asp:Content>
 
 <asp:Content ID="Content5" runat="server" ContentPlaceHolderID="searchLabel">
@@ -798,7 +798,7 @@
                     <div class="friendClass" onclick="getFriend('<%# Eval("user_name")%>')">
                         <asp:Label ID="friendID" runat="server" CssClass="derivativeFriendClass" Text='<%# Eval("user_name")%>'></asp:Label>
 
-                        <asp:Button ID="ChatButton" runat="server" Style="left: 90px; width: 250px; height: 50px; font-size: x-large; background-color: transparent; border: 1px solid; border-color: white;" CssClass="ChatText" Text="Chat" OnClick="ChooseSecondUser" />
+                        <asp:Button ID="ChatButton" runat="server" Style="left: 90px; width: 250px; height: 50px; font-size: x-large; background-color: transparent; border: 1px solid; border-color: white;" CssClass="ChatText" Text="Chat" />
                     </div>
                 </ItemTemplate>
             </asp:DataList>
