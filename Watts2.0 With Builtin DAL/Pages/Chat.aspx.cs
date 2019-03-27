@@ -235,7 +235,15 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         {
             friendsList.SelectedIndex = e.Item.ItemIndex;
             chosenUser = ((Label)friendsList.SelectedItem.FindControl("friendID")).Text;
-            Indicator.Text = "Chatting with user: " + chosenUser;
+            if (displayCounter == 1)
+            {
+                Indicator.Text = "Chatting with user: " + chosenUser;
+            }
+            else
+            {
+                Indicator.Text = "Chatting with Group: " + chosenUser;
+            }
+            userChatList.DataSource = null;
         }
 
         protected void searchF_TextChanged(object sender, EventArgs e)

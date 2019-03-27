@@ -21,7 +21,7 @@
                     <li>
                         <div class="placeholder">
                             <div class="upside">
-                                    <a href="#" class="button">
+                                    <a href="#" class="button2">
                                         <img src="../photos/group_icon.png" /><%--> 2 <--%><i class="fa fa-user"></i></a>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                     <li>
                         <div class="placeholder">
                             <div class="upside">
-                                <a href="Calander.aspx" class="button"><%--> 3 <--%>C<i class="fa fa-envelope-o"></i></a>
+                                <a href="#" class="button3"><%--> 3 <--%>C<i class="fa fa-envelope-o"></i></a>
                             </div>
                         </div>
                     </li>
@@ -683,16 +683,21 @@
     <script type="text/javascript">
         var username = window.location.href.slice(window.location.href.indexOf('=') + 1).split('%60');
         var password = window.location.href.slice(window.location.href.indexOf('&') + 10).split('%60');
-        var url = "Chat.aspx?username=" + username[0] + "`&password=" + password[0]+"`";
+        var url = "Chat.aspx?username=" + username[0] + "`&password=" + password[0] + "`";
+        var url2 = "Calander.aspx?username=" + username[0] + "`&password=" + password[0]+"`";
         function ChatLink() {
             alert(url);
         }
 
         $(document).ready(function(){
-            $(".button").click(function () {
+            $(".button2").click(function () {
                 ChatLink();
-        $(".button").attr("href", url);
-        });
+        $(".button2").attr("href", url);
+            });
+            $(".button3").click(function () {
+                ChatLink();
+        $(".button3").attr("href", url2);
+            });
         });
          
    

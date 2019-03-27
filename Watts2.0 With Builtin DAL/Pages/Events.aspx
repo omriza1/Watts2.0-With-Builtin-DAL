@@ -120,11 +120,15 @@
                 <HeaderTemplate>Events</HeaderTemplate>
                 <ItemTemplate>
                     <div class="eventContainer">
-                    <asp:Label ID="EventName" runat="server" Text='<%# Eval("EventName") %>' />
+                        <div class="EventHeader">
+                             <asp:Label ID="EventName" runat="server" style="font-size:xx-large; position:relative; left:60px; top:20px;"  Text='<%# Eval("EventName") %>' />
+                        </div>
                         <br />
-                    <asp:Label ID="EventDate" runat="server" Text='<%# Eval("EventDate") %>' />
+                        <div class="EventFooter">
+                             <asp:Label ID="EventDate" runat="server" Text='<%# Eval("EventDate") %>' />
                         <br />
-                    <asp:Label ID="EventTime" runat="server" Text='<%# Eval("EventTime") %>' />
+                             <asp:Label ID="EventTime" runat="server" Text='<%# Eval("EventTime") %>' />
+                        </div>
                     </div>
                 </ItemTemplate>
             </asp:DataList>
@@ -135,16 +139,35 @@
     </asp:UpdatePanel>
 </asp:Content>
 
+
+
 <asp:Content ID="Content4" ContentPlaceHolderID="Style" runat="server">
     <style type="text/css">
-        .eventContainer{
-            width:200px;
-            height:100px;
+        .EventHeader{
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            z-index: 7;
+            position: relative;
+            background-color: #c873ff;
+            width: 363px;
+            height: 95px;
+        }
+        .EventFooter{
+            border: 2px solid #dedede;
+            background-color: #E1B3FF;
+            border-radius: 18.3px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 345px;
+            height: 84px;
+            margin-left: 10px;
+            border-color: #E1B3FF;
+            top:-10px;
             position:relative;
-            margin-top:-150px;
-            border-color:white;
-            border: 2px solid;
-            float:left;
+        }
+        .eventContainer{
+            background-color: #f0d9ff;
+            border-radius:17px;
         }
     body {
             padding: 0;

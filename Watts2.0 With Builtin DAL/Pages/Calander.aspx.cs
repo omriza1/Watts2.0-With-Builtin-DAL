@@ -17,9 +17,15 @@ namespace Watts2._0_With_Builtin_DAL.Pages
         protected string reciver;
         protected MySqlConnection conn;
         protected MySqlCommand command;
+        protected string username { get; set; }
+        protected string password { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            user = (string)Session["user"];
+            username = Request.QueryString["username"];
+            username = username.Remove(username.Length - 1);
+            password = Request.QueryString["password"];
+            password = password.Remove(password.Length - 1);
+            user = username;
             conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["DATABASE"].ConnectionString);
         }
 
@@ -29,7 +35,7 @@ namespace Watts2._0_With_Builtin_DAL.Pages
             //string date = DateTime.ParseExact(calendar.SelectedDate.ToShortDateString(), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString();
             string date = calendar.SelectedDate.ToString("dd/MM/yyyy");
             Session["Date"] = date;
-            Response.Redirect("Events.aspx");
+            Response.Redirect("Events.aspx?username="+username+"`&password="+password+"`&date="+date+"`");
         }
     }
 }
